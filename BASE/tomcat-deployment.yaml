@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-app 
+spec:
+  selector:
+    matchLabels:
+      app: tomcat-app
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: tomcat-app
+    spec:
+      containers:
+      - name: tomcat-app
+        image: ssilbory/alpine-tomcat:v5
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  HTTP_PROXY: "foo"
+kind: ConfigMap
+metadata:
+  name: proxy-conf
+

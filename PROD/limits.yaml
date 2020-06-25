@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "tomcat-app"
+spec:
+  template:
+    spec:
+      containers:
+       - name: tomcat-app
+         resources:
+           limits:
+             memory: 4G
+           requests:
+             memory: 4G

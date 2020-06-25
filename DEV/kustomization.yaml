@@ -1,0 +1,41 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Sets a namespace on all yaml.  (Not needed if you install via nirmata.)
+namespace: my-tomcat
+
+# Set name prefix/suffix
+namePrefix: dev-
+nameSuffix: -c1
+
+# Adds these labels to all objects
+commonLabels:
+  dev: "true"
+  app: my-tomcat 
+
+# Swap images and tags.  Note that you don't need both newTag and newName.
+images:
+  - name: ssilbory/alpine-tomcat # match images with this name
+    newTag: latest  # override the tag
+    newName: dev-repo/alp-tomcat # override the name
+
+#create a configmap from the file hosts
+configMapGenerator:
+- name: hosts
+  files:
+  - hosts
+
+#create a secret from the file passwd
+secretGenerator:
+- name: passwd
+  files:
+  - passwd
+
+# Patch using these patch files.
+patchesStrategicMerge:
+- limits.yaml
+- cm.yaml
+
+# This is the base directory for the yamls to be kustomized
+bases:
+- ../BASE
