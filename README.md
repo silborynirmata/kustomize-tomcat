@@ -6,11 +6,13 @@ Requirements:
 Building
 - building DEV yaml files:
 ```
-kustomize build DEV` (or `kubectl kustomize DEV`)
+kustomize build DEV
+kubectl kustomize DEV
 ```
 - building PROD yaml files: 
 ```
-kustomize build PROD (or kubectl kustomize PROD)
+kustomize build PROD 
+kubectl kustomize PROD
 ```
 
 The output of the above command will go to standard output so you will likely want to redirect it to a file.
